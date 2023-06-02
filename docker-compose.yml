@@ -1,13 +1,13 @@
-version: '3.8'
+version: '3'
+
 services:
-  web:
-    build:
-      context: ./
-      target: runner
-    volumes:
-      - .:/app
-    command: npm run dev
+  app:
+    image: docker-nextjs-dev
+    build: .
     ports:
-      - "3000:3000"
-    environment:
-      NODE_ENV: development
+      - 3000:3000
+    volumes:
+      - ./components:/app/components
+      - ./pages:/app/pages
+      - ./public:/app/public
+      - ./styles:/app/styles
