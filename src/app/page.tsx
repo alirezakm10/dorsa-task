@@ -1,11 +1,9 @@
 'use client';
 import { useEffect, useState, useRef } from 'react';
 import {
-  setSortQuery,
   setSorted,
   setIncrementalData,
 } from '@/redux/features/animationsSlice';
-import Link from 'next/link';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import Image from 'next/image';
 import {
@@ -27,7 +25,6 @@ export default function Home() {
     isSuccess: sortSuccess,
   } = useSortedAnimationQuery(sortQuery);
   const [allowNextFetch, setAllowNextFetch] = useState<boolean>();
-  console.log('intersecting log: ', allowNextFetch);
   const animations = useAppSelector(state => state.animations.incrementalData);
   const sortedAnimations = useAppSelector(
     state => state.animations.sortedArray,
@@ -38,7 +35,7 @@ export default function Home() {
 
   useEffect(() => {
     if (sortData) {
-      console.log('this is sort data: ', sortData)
+      console.log('this is sort data: ', sortData.data)
       dispatch(setSorted(sortData.data));
     }
   }, [sortLoading, sortData]);

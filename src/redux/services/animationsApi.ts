@@ -14,7 +14,7 @@ export const animationsApi = createApi({
     getAnimationsByPage: builder.query<Animations, number>({
       query: (page) => `animations/?page=${page}`
     }),
-    sortedAnimation: builder.query<Animations[], string>({
+    sortedAnimation: builder.query<Animations, string>({
       query: (sortBy) => `animations/?sortby=${sortBy}`
     }),
   })
