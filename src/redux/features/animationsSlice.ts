@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 type AnimationsState = {
-  incrementalData: string[],
-  sortedArray: string[],
+  incrementalData: string[] | any,
+  sortedArray: string[] | any,
   showSort: boolean,
   sortQuery:string,
 }
