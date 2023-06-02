@@ -1,10 +1,12 @@
-FROM node:16-alpine
+FROM node:14-alpine
 
 WORKDIR /app
 
-COPY package.json yarn.lock ./
-RUN yarn
+COPY package.json .
+COPY package-lock.json .
 
-COPY next.config.js ./next.config.js
+RUN npm install
 
-CMD ["yarn", "dev"]
+COPY . .
+
+CMD ["npm", "run", "dev"]

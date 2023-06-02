@@ -1,13 +1,13 @@
-version: '3'
-
+version: '3.8'
 services:
   app:
-    image: docker-nextjs-dev
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     ports:
-      - 3000:3000
+      - '3000:3000'
     volumes:
-      - ./components:/app/components
-      - ./pages:/app/pages
-      - ./public:/app/public
-      - ./styles:/app/styles
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development

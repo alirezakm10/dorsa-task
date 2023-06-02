@@ -13,11 +13,10 @@ import {
   useGetAnimationsByPageQuery,
 } from '@/redux/services/animationsApi';
 import { VscStarFull } from "react-icons/vsc";
-import useTitleTruncation from '@/hooks/useTitleTruncation';
 
 
 export default function Home() {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const sortQuery = useAppSelector(state => state.animations.sortQuery);
   const { isLoading, data, isError, isSuccess } =
     useGetAnimationsByPageQuery(currentPage);
@@ -27,7 +26,7 @@ export default function Home() {
     isError: sortError,
     isSuccess: sortSuccess,
   } = useSortedAnimationQuery(sortQuery);
-  const [allowNextFetch, setAllowNextFetch] = useState();
+  const [allowNextFetch, setAllowNextFetch] = useState<boolean>();
   console.log('intersecting log: ', allowNextFetch);
   const animations = useAppSelector(state => state.animations.incrementalData);
   const sortedAnimations = useAppSelector(
@@ -39,6 +38,7 @@ export default function Home() {
 
   useEffect(() => {
     if (sortData) {
+      console.log('this is sort data: ', sortData)
       dispatch(setSorted(sortData.data));
     }
   }, [sortLoading, sortData]);
