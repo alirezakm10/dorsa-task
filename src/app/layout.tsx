@@ -1,7 +1,10 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
-
+import { Providers } from '@/redux/provider'
+import BottomSheet from './components/BottomSheet'
+import Nav from './components/Nav'
 const inter = Inter({ subsets: ['latin'] })
+
 
 export const metadata = {
   title: 'Create Next App',
@@ -15,7 +18,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className} >
+      <Providers>
+        <main className='container relative overflow-hidden bg-white mx-auto px-4 sm:px-6 md:px-8 max-w-[480px] min-h-screen '>
+        <Nav />
+        <section className='relative overflow-hidden mt-[120px] mb-[100px]' >
+        {children}
+        </section>
+        <BottomSheet />
+        </main> 
+        </Providers>
+        </body>
     </html>
   )
 }
